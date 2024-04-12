@@ -1,0 +1,157 @@
+html {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #fff5e1;
+  overflow-x: hidden;
+}
+
+#drinklist {
+  clear: both;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menuitem {
+  width: 17.5%;
+  background: #fadeb7;
+  border: 2px solid #483634;
+  margin: 10px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.menuitem img {
+  width: 100%;
+  border-radius: 12.5px 12.5px 0px 0px;
+}
+
+.menuitem button {
+  width: 50%;
+  height: 5%;
+  font-weight: bold;
+  background-color: #483634;
+  color: #fff5e1;
+  border: none;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+.preferenceitem {
+  display: block;
+  width: 50%;
+  height: 300px;
+  margin: auto;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid #483634;
+  border-radius: 15px;
+  background: #fadeb7;
+}
+
+.preferenceitem img {
+  max-height: 200px;
+  width: 30%;
+  float: left;
+  vertical-align: middle;
+}
+
+.preferenceitem p {
+  float: right;
+  text-align: right;
+  width: 45%;
+}
+
+.preferenceitem button {
+  clear: right;
+  float: right;
+
+}
+
+.hidden {
+  display: none;
+}
+
+.nothidden {
+  display: block;
+}
+
+.orderImage {
+  max-width: 300px;
+  height: auto;
+}
+
+.modalPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid #483634;
+  background-color: #ffe4ae;
+  border-radius: 10px;
+  z-index: 10;
+  width: 300px;
+  max-width: 80%;
+}
+
+.modalPopup.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modalText {
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(245, 222, 179, .5);
+  pointer-events: none;
+  transition: 200ms ease-in-out;
+}
+
+#overlay.active {
+  pointer-events: all;
+  opacity: 1;
+}
+
+#mobileWelcomeMessage {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.removeFromCart {
+  margin-bottom: 10px;
+}
+
+/* .closeButton {
+  
+} */
+
+@media (max-width: 1349px) {
+  .menuitem {
+    width: 25%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .menuitem {
+    width: 40%;
+  }
+}
+
+@media (min-width: 800px) {
+  #mobileWelcomeMessage {
+    display: none;
+  }
+}

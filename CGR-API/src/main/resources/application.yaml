@@ -1,0 +1,3 @@
+
+springdoc:
+  packagesToScan: com.jccc.controller

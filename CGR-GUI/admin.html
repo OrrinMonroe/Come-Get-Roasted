@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="account.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Come Get Roasted: Coffee for Tough People</title>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $("#header").load("header.html");
+      });
+    </script>
+  </head>
+
+  <body onload="loadTransactions(), loadPopular()">
+    <div id="header"></div>
+
+    <div id="navbuttons">
+      <button onclick="showTransactions()">Transaction History</button>
+      <button onclick="showPopularity()">Popularity</button>
+      <button onclick="exportAsCsv()">Export Data</button>
+    </div>
+
+    <table id="transactions">
+      <thead>
+        <th>Transaction</th>
+        <th>Drink</th>
+        <th>Cost</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total</td>
+          <td></td>
+          <td id="totalSpent"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table id="popular" style="display: none">
+      <thead>
+        <!-- <th>Popularity</th> -->
+        <th>Drink</th>
+        <th>Quantity Sold</th>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </body>
+  <script src="account_transactions.js"></script>
+  <script src="logged_in_on_page_load_check.js"></script>
+</html>

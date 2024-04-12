@@ -1,0 +1,29 @@
+button {
+  font-weight: bold;
+  background-color: #483634;
+  color: #fff5e1;
+  border: none;
+  border-radius: 15px;
+  padding: 5px;
+  min-width: 15%;
+}
+
+button:hover {
+  color:#ffe4ae;
+  cursor: pointer;
+}
+
+input {
+  font-weight: bold;
+  background-color: #483634;
+  color: #fff5e1;
+  border: none;
+  border-radius: 15px;
+  padding: 5px;
+  min-width: 15%;
+}
+
+input:hover {
+  color:#ffe4ae;
+  cursor: pointer;
+}

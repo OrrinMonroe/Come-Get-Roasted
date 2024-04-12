@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Header</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="header.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <img
+        id="logo"
+        src="img/logo.jpg"
+        alt="A logo of a cup of coffee"
+        href="index.html"
+      />
+      <h1><a href="index.html">Come Get Roasted</a></h1>
+
+      <span class="login" id="login">
+        <div style="display: none"></div>
+        <form class="loginForm" id="loginForm">
+          <label for="username">Username: </label>
+          <input type="text" id="username" name="username" />
+          <label for="password">Password: </label>
+          <input type="password" id="password" name="password" />
+          <input type="submit" value="Log In" />
+        </form>
+        <button
+          onclick="window.location.href='accountform.html'"
+          id="mobilelogin"
+        >
+          Log In or Create Account
+        </button>
+        <button
+          onclick="window.location.href='accountform.html'"
+          id="accountform"
+        >
+          Create Account
+        </button>
+      </span>
+      <div class="logout" id="logout" style="display: none">
+        <p id="welcome">Welcome!</p>
+        <button id="admin" onclick="window.location.href='admin.html'">
+          Admin
+        </button>
+        <button id="account" onclick="window.location.href='account.html'">
+          Account
+        </button>
+        <button id="logoutbtn">Log Out</button>
+      </div>
+    </header>
+
+    <script src="login.js"></script>
+    <script src="log_out.js"></script>
+  </body>
+</html>

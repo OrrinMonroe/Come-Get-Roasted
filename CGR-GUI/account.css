@@ -1,0 +1,33 @@
+html {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #fff5e1;
+  overflow-x: hidden;
+}
+
+table {
+  padding: 25px;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: x-large;
+  text-align: center;
+}
+
+th {
+  background-color: #483634;
+  color: white;
+}
+
+tr {
+  width: 100%;
+  background-color: #fff5e1;
+}
+
+tr:nth-child(odd) {
+  background-color: #fadeb7;
+}
+
+#navbuttons {
+  text-align: center;
+  margin-top: 20px;
+}

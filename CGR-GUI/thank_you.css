@@ -1,0 +1,29 @@
+html {
+    font-family: "Courier New", Courier, monospace;
+    background-color: #fff5e1;
+    overflow-x: hidden;
+  }
+  
+  #preferenceList {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: xx-large;
+    background-color: rgba(39, 19, 0, 1);
+    border: 2px solid wheat;
+    border-radius: 15px;
+    display: none;
+  }
+  
+  @media (max-width: 1349px) {
+    .menuitem {
+      width: 25%;
+    }
+  }
+  
+  @media (max-width: 1000px) {
+    .menuitem {
+      width: 40%;
+    }
+  }
+  

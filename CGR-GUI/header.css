@@ -1,0 +1,177 @@
+@media (min-width: 801px) {
+  .header {
+    font-family: "Courier New", Courier, monospace;
+    background-color: #fadeb7;
+    height: 50px;
+    border: 2px solid #483634;
+    border-radius: 15px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #logo {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5px;
+    height: 75%;
+    border-radius: 50%;
+  }
+  
+  #mobilelogin {
+    display: none;
+  }
+  
+  .header h1 {
+    font-size: xx-large;
+    position: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 15px;
+    color: #483634;
+  }
+  
+  .header a {
+    text-decoration: none;
+    color: #483634;
+  }
+  
+  .login {
+    margin-left: auto;
+    margin-right: 1%;
+    color: #483634;
+    white-space: nowrap;
+  }
+  
+  .logout {
+    margin-left: auto;
+    margin-right: 1%;
+    color: #483634;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logout p {
+    padding-right: 15px;
+    text-wrap: nowrap;
+  }
+  
+  .logout button {
+    padding-right: 40px;
+    padding-left: 40px;
+    margin-left: auto;
+    margin-right: 5px;
+  }
+  
+  .loginForm {
+    display: inline-block;
+    line-height: 50px;
+    margin-right: 45px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .nothidden {
+    display: inline;
+    vertical-align: inherit;
+  }
+}
+
+@media (max-width: 800px) {
+  .header h1 {
+    font-size: 25px;
+  }
+
+  .header {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #fadeb7;
+  height: 50px;
+  border: 2px solid #483634;
+  border-radius: 15px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#logo {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 5px;
+  height: 75%;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.header h1 {
+  font-size: 15px;
+  position: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 15px;
+  color: #483634;
+}
+
+.header a {
+  text-decoration: none;
+  color: #483634;
+}
+
+.login {
+  margin-left: auto;
+  margin-right: 1%;
+  color: #483634;
+  white-space: nowrap;
+}
+
+.logout {
+  margin-left: auto;
+  margin-right: 1%;
+  color: #483634;
+  display: flex;
+  align-items: center;
+}
+
+.logout p {
+  padding-right: 15px;
+  text-wrap: nowrap;
+}
+
+.logout button {
+  padding-right: 40px;
+  padding-left: 40px;
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+.login button {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.loginForm {
+  display: none;
+  line-height: 50px;
+}
+
+.hidden {
+  display: none;
+}
+
+.nothidden {
+  display: inline;
+  vertical-align: inherit;
+}
+
+  #accountform {
+    display: none;
+  }
+
+  #welcome {
+    display: none;
+  }
+}
+
+

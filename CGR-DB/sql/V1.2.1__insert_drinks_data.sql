@@ -1,0 +1,10 @@
+insert into drinks (drink_id, drink_name, price, img, description, category) values (1, 'latte', 3.00, 'latte', 'Rich and creamy latte with a hint of caramel', 'Espresso');
+insert into drinks (drink_id, drink_name, price, img, description, category) values (2, 'cappuccino', 4.00, 'cappuccino', 'Bold and robust espresso shot with a touch of vanilla', 'Latte');
+insert into drinks (drink_id, drink_name, price, img, description, category) values (3, 'espresso', 8.00, 'espresso', 'Smooth and velvety cappuccino with a sprinkle of cinnamon', 'Cappuccino');
+insert into drinks (drink_id, drink_name, price, img, description, category) values (4, 'macchiato', 5.00, 'macchiato', 'Iced coffee with a splash of hazelnut syrup', 'Mocha');
+insert into drinks (drink_id, drink_name, price, img, description, category) values (5, 'americano', 4.00, 'americano', 'Decadent mocha with whipped cream and chocolate shavings', 'Americano');
+insert into drinks (drink_id, drink_name, price, img, description, category) values (6, 'mocha', 5.00, 'mocha', 'Refreshing cold brew with a twist of lemon', 'Espresso');
+insert into drinks (drink_id, drink_name, price, img, description, category) values (7, 'flat white', 3.00, 'flat white', 'Indulgent macchiato with a drizzle of caramel', 'Latte');
+insert into drinks (drink_id, drink_name, price, img, description, category) values (8, 'affogato', 4.00, 'affogato', 'Frothy and frothy flat white with a dash of honey', 'Cappuccino');
+insert into drinks (drink_id, drink_name, price, img, description, category) values (9, 'cold brew', 6.00, 'cold brew', 'Flavorful americano with a splash of almond milk', 'Mocha');
+insert into drinks (drink_id, drink_name, price, img, description, category) values (10, 'frappe', 3.00, 'frappe', 'Creamy and indulgent affogato with a scoop of vanilla ice cream', 'Americano');

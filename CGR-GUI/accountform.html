@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="accountform.css" />
+    <title>Create Account</title>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $("#header").load("header.html");
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="header"></div>
+
+    <form class="inputForm" id="loginForm">
+      <h1>Login</h1>
+      <div>
+        <label>Username: </label>
+        <input type="text" id="username" name="username" />
+      </div>
+      <div>
+        <label>Password: </label>
+        <input type="password" id="password" name="password"> 
+      </div>
+      <div>
+        <input type="submit" value="Login">
+      </div>
+    </form>
+
+    <form class="inputForm" id="createAccountForm">
+      <h1>Create a CGR Rewards Account</h1>
+      <p>Join CGR Rewards to earn points for free drinks!</p>
+      <div class="input-control">
+        <label for="username">Username: </label>
+        <input type="text" id="newUsername" name="username" />
+        <div class="error"></div>
+      </div>
+
+      <div class="input-control">
+        <label for="password">Password: </label>
+        <input type="password" id="newPassword" name="password" />
+        <div class="error"></div>
+      </div>
+
+      <div class="input-control">
+        <label for="cpassword">Confirm Password: </label>
+        <input type="password" id="cpassword" name="cpassword" />
+        <div class="error"></div>
+      </div>
+
+      <div class="input-control">
+        <label for="birthdate">Date of Birth: </label>
+        <input type="date" id="birthdate" name="birthdate" />
+        <div class="error"></div>
+      </div>
+
+      <div>
+        <input type="submit" value="Create Account" />
+      </div>
+    </form>
+  </body>
+  <script src="create_account.js"></script>
+  <script src="login.js"></script>
+    <script src="log_out.js"></script>
+    <script src="logged_in_on_page_load_check.js"></script>
+</html>
