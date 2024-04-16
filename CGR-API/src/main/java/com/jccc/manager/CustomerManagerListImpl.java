@@ -22,7 +22,7 @@ public class CustomerManagerListImpl implements CustomerManager {
 
   public ArrayList<Customer> customerList = new ArrayList<Customer>();
 
-  public Customer loggedInCustomer;
+  public static Customer loggedInCustomer;
 
   public static int id = 1;
 
@@ -108,6 +108,29 @@ public class CustomerManagerListImpl implements CustomerManager {
       }
     }
     return null;
+  }
+
+  public Customer updateLoggedInCustomer() {
+    if (loggedInCustomer != null) {
+      int loggedInCustomerId = loggedInCustomer.getId();
+      try {
+        Connection con = connectToDatebase();
+        Statement statement = con.createStatement();
+        ResultSet rs = statement.executeQuery("SELECT * from customers WHERE customer_id = " + loggedInCustomerId);
+        while (rs.next()) { 
+          Customer customer = new Customer(rs.getInt(1), rs.getString(2), 
+              rs.getString(3), rs.getInt(5), rs.getBoolean(6));
+            loggedInCustomer = customer;
+        }
+        rs.close();
+        return loggedInCustomer;
+      } catch (Exception e) {
+        System.out.println("Error in CustomerManager: " + e.getMessage());
+        return null;
+      }
+    } else {
+      return null;
+    }
   }
 
   @Override

@@ -24,6 +24,7 @@
   
   .header h1 {
     font-size: xx-large;
+    text-wrap: nowrap;
     position: flex;
     margin-top: auto;
     margin-bottom: auto;
@@ -82,6 +83,7 @@
 @media (max-width: 800px) {
   .header h1 {
     font-size: 25px;
+    text-wrap: nowrap;
   }
 
   .header {
@@ -106,6 +108,7 @@
 
 .header h1 {
   font-size: 15px;
+  text-wrap: nowrap;
   position: flex;
   margin-top: auto;
   margin-bottom: auto;
