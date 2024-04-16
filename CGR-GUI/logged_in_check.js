@@ -8,6 +8,7 @@ fetch("http://localhost:8080/loggedincustomer", {
 })
   .then((response) => response.json())
   .then((response) => {
+    console.log(response.id);
     const login = document.getElementById("login");
     const welcome = document.getElementById("welcome");
     const logout = document.getElementById("logout");

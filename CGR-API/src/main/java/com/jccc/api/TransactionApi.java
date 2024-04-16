@@ -1,5 +1,5 @@
 package com.jccc.api;
-
+import com.jccc.objects.Customer;
 import com.jccc.objects.Transaction;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

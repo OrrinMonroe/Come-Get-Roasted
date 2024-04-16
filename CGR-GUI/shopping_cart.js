@@ -148,11 +148,36 @@ function addToOrder() {
 //Creates an item object and then submits it to the addToCart function
 function itemSubmit (customer_Id, drink_Id, drink_Price, drink_name, drink_points) {
   let item = {
-    transactionId: 0,
     drinkId: drink_Id,
     customerId: customer_Id,
-    price: drink_Price,
-    points: drink_points
+    basePrice: drink_Price,
+    basePoints: drink_points,
+    baseQuantity: 1,
+  }
+
+  item.price = item.basePrice;
+  item.points = item.basePoints;
+  item.quantity = item.baseQuantity;
+
+  for (const key in localStorage) {
+    if (localStorage.length == 0 ) 
+    {
+      break;
+    }
+
+    if (localStorage.getItem(key) == null)
+    {
+      break;
+    }
+
+    if (key == drink_name)
+    {
+      itemInCart = JSON.parse(localStorage.getItem(key));
+      item.price = item.price + itemInCart.price;
+      item.points = item.points + itemInCart.points;
+      item.quantity = item.quantity + itemInCart.quantity;
+    }
+
   }
 
   addToCart(item, drink_name);
@@ -212,6 +237,8 @@ function viewShoppingCart() {
         <div class="inputForm" align='center' style='position: relative, width: 50%; margin-left: auto; margin-right: auto;'>
           <h3>Item ${(i+1)}</h3>
           <p>${localStorage.key(i)}</p>
+          <p>Quantity: ${cart[i].quantity}</p>
+          <span><p>Change Quantity: </p><button class="changeQuantity minus">-</button><button class="changeQuantity plus">+</button></span>
           <p>Price: $${cart[i].price}.00</p>
           <p>Points Accrued: ${cart[i].points}</p>
           <p style="display: none">${localStorage.key(i)}</p>
@@ -229,6 +256,8 @@ function viewShoppingCart() {
     `);
 
     removeFromCart();
+    addQuantity();
+    subtractQuantity();
     finalOrderPlacement();
   }
 }
@@ -247,8 +276,6 @@ function finalOrderPlacement() {
       window.alert("Please add at least one item to cart.");
     } else {
       let cart = [];
-
-      let cartSize = 0;
       
       for (const key in localStorage) {
         if (localStorage.getItem(key) == null)
@@ -256,20 +283,41 @@ function finalOrderPlacement() {
           break;
         }
 
-        let item = JSON.parse(localStorage.getItem(key));
+        let storageItem = JSON.parse(localStorage.getItem(key));
 
-        cart.push(item);
+        for (let i = 1; i <= storageItem.quantity; i++)
+        {
+          let item = {
+            transactionId: 0,
+            drinkId: storageItem.drinkId,
+            customerId: storageItem.customerId,
+            price: storageItem.basePrice,
+            points: storageItem.basePoints
+          }
 
-        cartSize++;
+          // console.log(item);
+          console.log(item.points);
+          cart.push(item);
+          fetch("http://localhost:8080/loggedincustomer", {
+            method: 'PUT',
+            mode: 'cors',
+            headers: {
+              "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': '*'
+            },
+          })
+        }
       }
+
+      // console.log(cart);
 
       let i = 0;
 
-      while (i < cartSize) {
-        if (cart[i] == null) {
-          break;
-        }
+      // console.log(cart.length);
 
+      // console.log(cart);
+
+      while (i < cart.length) {
         console.log(cart[i]);
 
         fetch("http://localhost:8080/transaction", {
@@ -284,9 +332,12 @@ function finalOrderPlacement() {
 
         i++;
       }
-      localStorage.clear();
+      
+      let mainDiv = document.getElementById('main');
+      mainDiv.innerHTML = `<div class="inputForm" align="center" style="position: relative, width: 50%; margin-left: auto; margin-right: auto;"><h2>Thank you for your order!</h2><a href="index.html"><button style="margin-top: 20px">Back to List</button></a></div>`;
 
-      window.location.href = "thank_you.html";
+      setTimeout(localStorage.clear(), 20000);
+  
     }
   });
 
@@ -312,4 +363,62 @@ function removeFromCart() {
       }
     }
   )}
+}
+
+function addQuantity() {
+  const addQuantityButtons = document.querySelectorAll(".plus");
+  
+  for (let i = 0; i < addQuantityButtons.length; i++) {
+    addQuantityButtons[i].addEventListener("click", (event) => {
+      const cartItemName = addQuantityButtons[i].parentElement.previousElementSibling.previousElementSibling.innerHTML;
+      
+      let item = JSON.parse(localStorage.getItem(cartItemName));
+      item.price = item.price + item.basePrice;
+      item.points = item.points + item.basePoints;
+      item.quantity = item.quantity + item.baseQuantity;
+
+      let item_serialized = JSON.stringify(item);
+
+      localStorage.setItem(cartItemName, item_serialized);
+      viewShoppingCart();
+    });
+  }
+}
+
+function subtractQuantity() {
+  const subtractQuantityButtons = document.querySelectorAll(".minus");
+  
+  for (let i = 0; i < subtractQuantityButtons.length; i++) {
+    subtractQuantityButtons[i].addEventListener("click", (event) => {
+
+      const cartItemName = subtractQuantityButtons[i].parentElement.previousElementSibling.previousElementSibling.innerHTML;
+      
+      let item = JSON.parse(localStorage.getItem(cartItemName));
+
+      if (item.quantity == 1) 
+      {
+        localStorage.removeItem(cartItemName);
+
+        if (localStorage.length > 0)
+        {
+          viewShoppingCart();
+        }
+        else
+        {
+          window.location.href="index.html";
+        }
+      }
+      else
+      {
+        item.price = item.price - item.basePrice;
+        item.points = item.points - item.basePoints;
+        item.quantity = item.quantity - item.baseQuantity;
+
+        let item_serialized = JSON.stringify(item);
+
+        localStorage.setItem(cartItemName, item_serialized);
+        viewShoppingCart();
+      }
+    });
+  }
 }

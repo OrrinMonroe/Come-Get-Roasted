@@ -31,6 +31,14 @@ fetch("http://localhost:8080/loggedInUser", {
             const welcomeMobile = document.getElementById("welcomeMobile");
             welcomeMobile.innerHTML = `Welcome, ${response.username}! Points: ${response.points}  `;
           }
+          fetch("http://localhost:8080/loggedincustomer", {
+            method: 'PUT',
+            mode: 'cors',
+            headers: {
+              "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': '*'
+            },
+          })
           //welcome.innerHTML = `Welcome, ${response.username}! Points: ${response.points}  `;
           logout.style.display = null;
           login.style.display = "none";

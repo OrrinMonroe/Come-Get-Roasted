@@ -86,6 +86,12 @@ public class CustomerController {
     return customerManager.loggedInCustomer != null;
   }
 
+  @PutMapping(value = "/loggedincustomer")
+  public Customer updateLoggedInCustomer() {
+    Customer updatedCustomer = customerManager.updateLoggedInCustomer();
+    return updatedCustomer;
+  }
+
   /**
  * Creates a connection to the database,
  * calls getMostCommonOrderOfUser in the CoffeeApi.java file,
