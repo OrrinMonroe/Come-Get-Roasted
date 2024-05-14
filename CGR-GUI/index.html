@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="index.css" />
+    
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="index.css" />
     <title>Come Get Roasted: Coffee for Tough People</title>
 
     <script
@@ -22,14 +24,51 @@
 
   <body>
     <div id="header"></div>
+
+    <div id="welcome-mobile">
+    </div>
+
     <div id="main">
-      <div id="preferenceList" class="hidden">
+      <div id="preferenceWrapper">
+        <div id="preferenceList" class="hidden">
+        </div>
       </div>
-      <div id="mobileWelcomeMessage">
-        <p id="welcomeMobile">Welcome!</p>
+      <br />
+      <div class="filterButtons">
+        <div class="filterDiv">
+          <button class="filterButton espresso">View Espresso</button>
+          <button class="filterButton americano">View Americano</button>
+          <button class="filterButton cold">View Iced Drinks</button>
+          <button class="filterButton points">View Points-Eligible</button>
+          <button class="filterButton clear">Clear Filters</button>
+        </div>
+
+        <div class="mobileFilterList">
+          <h3>Filter By:</h3>
+          <button class="filterButton mobile espressoMobile">Espresso</button>
+          <button class="filterButton mobile americanoMobile">Americano</button>
+          <button class="filterButton mobile coldMobile">Iced</button>
+          <button class="filterButton mobile pointsMobile">Points</button>
+          <button class="filterButton mobile clearMobile">Clear</button>
+        </div>
       </div>
-      </div>
+
       <ul id="drinklist"></ul>
+    </div>
+
+    <!-- Modal that prompts people to log in if they press order without being logged in -->
+    <div id="checkoutAsGuestModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" id="closeCheckout">&times;</span>
+        <h2>Not Signed In? Not Registered?</h2>
+        <p>Sign in or register in order to receive points towards free drinks!</p>
+        <a href="accountform.html"><button style="margin-bottom: 10px;">Sign In or Create Account</button></a>
+
+        <button class="guestCheckout">No Thanks - Checkout As Guest</button>
+      </div>
+
     </div>
 
     <script src="import_coffee.js"></script>

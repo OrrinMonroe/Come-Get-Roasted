@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Header</title>
+    
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="header.css" />
     <link
@@ -26,7 +27,7 @@
           <input type="text" id="username" name="username" />
           <label for="password">Password: </label>
           <input type="password" id="password" name="password" />
-          <input type="submit" value="Log In" />
+          <input type="submit" value="Log In" id="loginButton"/>
         </form>
         <button
           onclick="window.location.href='accountform.html'"
@@ -40,20 +41,56 @@
         >
           Create Account
         </button>
+        <i class="fa fa-shopping-cart cartButton" style="font-size:24px" onclick="viewShoppingCart()"></i>
       </span>
+
+      <!-- The Modal -->
+      <div id="loginFailModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Login failed! Please try again.</p>
+        </div>
+
+      </div>
+
       <div class="logout" id="logout" style="display: none">
         <p id="welcome">Welcome!</p>
-        <button id="admin" onclick="window.location.href='admin.html'">
+        <button class="hidden admin" onclick="window.location.href='admin.html'">
           Admin
         </button>
         <button id="account" onclick="window.location.href='account.html'">
           Account
         </button>
         <button id="logoutbtn">Log Out</button>
+        <i class="fa fa-shopping-cart cartButton" style="font-size:24px" onclick="viewShoppingCart()"></i>
       </div>
+
+      <div class="off-screen-menu">
+        <ul>
+          <li class="mobileLink loginMobile bottomBorder nothiddenmobilemenu" onclick="window.location.href='accountform.html'">Log In/Create Account</li>
+          <li class="mobileLink logoutMobile hidden">Log Out</li>
+          <li class="mobileLink viewCartMobile bottomBorder nothiddenmobilemenu" onclick="viewShoppingCart()">View Cart</li>
+          <li class="mobileLink toggleFiltersMobile bottomBorder nothiddenmobilemenu">Toggle Filters</li>
+          <li class="mobileLink accountMobile hidden" onclick="window.location.href='account.html'">Account</li><br>
+          <li class="mobileLink adminMobile hidden" onclick="window.location.href='admin.html'">Admin</li>
+        </ul>
+      </div>
+
+      <div class="ham-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      
     </header>
 
+    <script src="hamburger.js"></script>
+    <script src="shopping_cart.js"></script>
     <script src="login.js"></script>
     <script src="log_out.js"></script>
+    <script src="toggle_filters.js"></script>
   </body>
 </html>

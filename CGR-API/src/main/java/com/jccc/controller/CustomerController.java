@@ -92,6 +92,11 @@ public class CustomerController {
     return updatedCustomer;
   }
 
+  @GetMapping(value = "/customersnotdeleted")
+  public ArrayList<Customer> readCustomersNotDeleted() {
+    return customerManager.readAllCustomersNotDeleted();
+  }
+
   /**
  * Creates a connection to the database,
  * calls getMostCommonOrderOfUser in the CoffeeApi.java file,

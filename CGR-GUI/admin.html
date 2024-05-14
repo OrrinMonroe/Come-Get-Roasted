@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
     <link rel="stylesheet" href="account.css" />
     <link rel="stylesheet" href="style.css" />
     <title>Come Get Roasted: Coffee for Tough People</title>
@@ -20,13 +21,14 @@
     </script>
   </head>
 
-  <body onload="loadTransactions(), loadPopular()">
+  <body onload="loadTransactions(), loadPopular(), loadCustomers()">
     <div id="header"></div>
 
     <div id="navbuttons">
       <button onclick="showTransactions()">Transaction History</button>
-      <button onclick="showPopularity()">Popularity</button>
-      <button onclick="exportAsCsv()">Export Data</button>
+      <button onclick="exportAsCsv()">Export Transaction Data</button>
+      <button onclick="showPopularity()">Drink Popularity</button>
+      <button onclick="showCustomers()">Customer Data</button>
     </div>
 
     <table id="transactions">
@@ -34,12 +36,23 @@
         <th>Transaction</th>
         <th>Drink</th>
         <th>Cost</th>
+        <th>Customer ID</th>
+        <th>Points earned/used</th>
       </thead>
       <tbody>
         <tr>
-          <td>Total</td>
+          <td> </td>
           <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Total:</td>
+          <td>-</td>
           <td id="totalSpent"></td>
+          <td>-</td>
+          <td id="netPointsBalance"></td>
         </tr>
       </tbody>
     </table>
@@ -52,7 +65,27 @@
       </thead>
       <tbody></tbody>
     </table>
+
+    <table id="customers" style="display: none">
+      <thead>
+
+        <th>Customer ID</th>
+        <th> Username</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Points</th>
+        <th>Admin</th>
+        <th>Actions</th>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+
   </body>
   <script src="account_transactions.js"></script>
   <script src="logged_in_on_page_load_check.js"></script>
+  <script src="admin_check.js"></script>
+
+  <script src="get_customers.js"></script>
+
 </html>

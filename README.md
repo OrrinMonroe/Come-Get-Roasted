@@ -1,21 +1,19 @@
 # Come-Get-Roasted
-    Come-Get-Roasted is a coffee shop app that was designed to increase a 
-    shops sales and the customers overall experience with purchasing a coffee
-    at that location.
-## Shop Owners
-    A shop owner simply needs to contact our development team via email 
-    [here](omonroe@stumail.jccc.edu) to begin the process of having us add your 
-    stores specific menu and management staff to our app database as coffees, and
-    administrators respectively. Once completed you can begin adding customers to 
-    your app database simply by having them create an account.
-## Customers
-    Customers once the shop owners have updated to our app simply log in and 
-    create an account to have begin accruing points towards the free coffee 
-    you deserve in the future.
+    In today's highly competitive coffee industry, customer retention and
+    loyalty are crucial for sustained business growth. To enhance
+    customer engagement and foster brand loyalty, Come Get Roasted Coffee
+    Shop proposes the implementation of a comprehensive rewards program. 
+    This program aims to reward customers for their loyalty, drive
+    repeat business, and differentiate Come Get Roasted Coffee Shop 
+    from competitors.
+## Project Objectives
+-Increase customer retention by 20% within the first year.
+-Encourage repeat visits and increase the average transaction value by 15%.
+-Establish CGR as the preferred choice for coffee enthusiasts in the target market.
+-Gather valuable customer data for personalized marketing strategies.
 
 ## Team Members
-
-Chris Bohling
-Will Severson
-Orrin Monroe
-Mikey Dowsett
+- Orrin Monroe - Team Lead
+- Chris Bohling - UI Developer
+- Will Severson - Software Engineer
+- Mikey Dowsett - Software Engineer

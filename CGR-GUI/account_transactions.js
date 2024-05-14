@@ -11,22 +11,32 @@ function loadTransactions() {
     .then((response) => response.json())
     .then((response) => {
       let total = 0;
+      let netPointsBalance = 0;
+      let rowCount = 3;
       getDrinks().then((drinks) => {
-        for (let i = 0; i < response.length; i++) {
-          let row = table.insertRow(i + 1);
+        for (let i = response.length - 1; i > 0; i--) {
+          let row = table.insertRow(rowCount);
           row.insertCell(0);
           row.insertCell(1);
           row.insertCell(2);
+          row.insertCell(3);
+          row.insertCell(4);
 
           total += drinks[response[i].drinkId - 1].price;
 
-          table.rows[i + 1].cells[0].innerHTML = response[i].transactionId;
-          table.rows[i + 1].cells[1].innerHTML =
+          table.rows[rowCount].cells[0].innerHTML = response[i].transactionId;
+          table.rows[rowCount].cells[1].innerHTML =
             drinks[response[i].drinkId - 1].name;
-          table.rows[i + 1].cells[2].innerHTML =
+          table.rows[rowCount].cells[2].innerHTML =
             "$" + drinks[response[i].drinkId - 1].price + ".00";
+          table.rows[rowCount].cells[3].innerHTML = response[i].customerId;
+          table.rows[rowCount].cells[4].innerHTML = response[i].points;
+          netPointsBalance += response[i].points;
+          rowCount++;
         }
-        document.getElementById("totalSpent").innerHTML += total;
+        document.getElementById("totalSpent").innerHTML += "$" + total;
+        document.getElementById("netPointsBalance").innerHTML =
+          netPointsBalance;
       });
     })
     .catch((error) => {
@@ -47,17 +57,17 @@ function loadPopular() {
     .then((response) => response.json())
     .then((response) => {
       getDrinks().then((drinks) => {
-        let keys = Object.keys(response).sort((a, b) => a - b);
-        console.log(keys);
+        const keys = Object.keys(response);
+        let totalSold = 0;
         for (let i = 0; i < keys.length; i++) {
           let row = table.insertRow(i + 1);
           row.insertCell(0);
           row.insertCell(1);
-          // row.insertCell(2);
-          // table.rows[i + 1].cells[0].innerHTML = i + 1;
           table.rows[i + 1].cells[0].innerHTML = drinks[keys[i] - 1].name;
           table.rows[i + 1].cells[1].innerHTML = response[keys[i]];
+          totalSold += response[keys[i]];
         }
+        document.getElementById("totalSold").textContent = totalSold;
       });
     })
     .catch((error) => {
@@ -76,12 +86,24 @@ function exportAsCsv() {
     .then((response) => response.json())
     .then((response) => {
       getDrinks().then((drinks) => {
-        let csvContent = "Id,Drink,Price\n";
+        let csvContent = "Id,Drink,Price,Customer Id,Points\n";
         for (let i = 0; i < response.length; i++) {
           const id = response[i].transactionId;
           const drink = drinks[response[i].drinkId - 1].name;
           const price = "$" + drinks[response[i].drinkId - 1].price + ".00";
-          csvContent += id + "," + drink + "," + price + "\n";
+          const customerId = response[i].customerId;
+          const points = response[i].points;
+          csvContent +=
+            id +
+            "," +
+            drink +
+            "," +
+            price +
+            "," +
+            customerId +
+            "," +
+            points +
+            "\n";
         }
 
         const blob = new Blob([csvContent], {
@@ -122,11 +144,17 @@ function loadUserTransactions() {
             let row = table.insertRow(i + 1);
             row.insertCell(0);
             row.insertCell(1);
+            row.insertCell(2);
 
             table.rows[i + 1].cells[0].innerHTML =
               drinks[response[i].drinkId - 1].name;
-            table.rows[i + 1].cells[1].innerHTML =
-              "$" + drinks[response[i].drinkId - 1].price + ".00";
+            if (response[i].points > 0) {
+              table.rows[i + 1].cells[1].innerHTML =
+                "$" + drinks[response[i].drinkId - 1].price + ".00";
+            } else {
+              table.rows[i + 1].cells[1].innerHTML = "$0.00";
+            }
+            table.rows[i + 1].cells[2].textContent = response[i].points;
           }
         });
       })
@@ -174,15 +202,29 @@ function getUser() {
 function showTransactions() {
   let transactionTable = document.getElementById("transactions");
   let popularityTable = document.getElementById("popular");
+  let customerTable = document.getElementById("customers");
 
   transactionTable.style.display = null;
   popularityTable.style.display = "none";
+  customerTable.style.display = "none";
 }
 
 function showPopularity() {
   let transactionTable = document.getElementById("transactions");
   let popularityTable = document.getElementById("popular");
+  let customerTable = document.getElementById("customers");
 
   transactionTable.style.display = "none";
+  customerTable.style.display = "none";
   popularityTable.style.display = null;
+}
+
+function showCustomers() {
+  let transactionTable = document.getElementById("transactions");
+  let popularityTable = document.getElementById("popular");
+  let customerTable = document.getElementById("customers");
+
+  transactionTable.style.display = "none";
+  popularityTable.style.display = "none";
+  customerTable.style.display = null;
 }

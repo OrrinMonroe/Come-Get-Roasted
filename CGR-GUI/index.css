@@ -10,6 +10,8 @@ html {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  list-style: none;
+  padding-left: 0;
 }
 
 .menuitem {
@@ -28,7 +30,6 @@ html {
 
 .menuitem button {
   width: 50%;
-  height: 5%;
   font-weight: bold;
   background-color: #483634;
   color: #fff5e1;
@@ -37,10 +38,22 @@ html {
   margin-bottom: 10px;
 }
 
+/* fixes the button line height in Firefox */
+@-moz-document url-prefix() {
+  .menuitem button {
+    line-height: 5%;
+  }
+}
+
+#preferenceWrapper {
+  text-align: center;
+}
+
 .preferenceitem {
-  display: block;
-  width: 50%;
-  height: 300px;
+  vertical-align: top;
+  display: inline-block;
+  width: 47%;
+  height: 180px;
   margin: auto;
   padding: 10px;
   margin-top: 20px;
@@ -51,22 +64,30 @@ html {
 }
 
 .preferenceitem img {
-  max-height: 200px;
-  width: 30%;
+  max-height: 112.5%;
   float: left;
+  top: 50%;
+  left: 0%;
+  transform: translate(-5.5%, -39%);
   vertical-align: middle;
+  border-radius: 15px 0px 0px 15px;
 }
 
 .preferenceitem p {
-  float: right;
+  margin-left: auto;
+  margin-right: 0;
   text-align: right;
-  width: 45%;
+}
+
+.preferenceitem h2 {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
 }
 
 .preferenceitem button {
   clear: right;
   float: right;
-
 }
 
 .hidden {
@@ -114,7 +135,7 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(245, 222, 179, .5);
+  background-color: rgba(245, 222, 179, 0.5);
   pointer-events: none;
   transition: 200ms ease-in-out;
 }
@@ -124,38 +145,84 @@ html {
   opacity: 1;
 }
 
-#mobileWelcomeMessage {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  text-align: center;
+.filterDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.removeFromCart {
-  margin-bottom: 10px;
+.filterButton {
+  display: inline-block;
+  width: 19%;
 }
 
-.changeQuantity {
-  margin-left: 5px;
-  margin-right: 5px;
+.filterActive {
+  background: none;
+  border: 1px solid #483634;
+  color: #483634;
 }
-/* .closeButton {
-  
-} */
 
-@media (max-width: 1349px) {
+.filterActive:hover {
+  color: #483634;
+}
+
+.mobileFilterList {
+  display: none;
+}
+
+#welcome-mobile {
+  display: none;
+}
+
+@media (max-width: 1346px) {
   .menuitem {
     width: 25%;
   }
 }
 
+@media (max-width: 1300px) {
+  #welcome-mobile {
+    display: block;
+    margin-top: 10px;
+  }
+}
+
 @media (max-width: 1000px) {
+
   .menuitem {
     width: 40%;
+  }
+
+  .desc {
+    display: none;
+  }
+
+  button {
+    height: 50px;
+    font-size: large;
+  }
+
+  .filterDiv {
+    display: none;
+  }
+
+  .filterButton {
+    font-size: x-small;
+  }
+
+  .preferenceitem {
+    width: 90%;
+  }
+
+  .mobileFilterList {
+    display: none;
+  }
+
+  .mobileFilterList.active {
+    display: block;
   }
 }
 
 @media (min-width: 800px) {
-  #mobileWelcomeMessage {
-    display: none;
-  }
+
 }

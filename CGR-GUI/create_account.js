@@ -44,7 +44,7 @@ formEl.addEventListener('submit', event => {
                         // window.location.reload();
                     } else {
                         let script = document.createElement('script');
-                        script.src = "logged_in_check.js";
+                        script.src = "logged_in_on_page_load_check.js";
                         document.body.append(script);
                     }
                 })

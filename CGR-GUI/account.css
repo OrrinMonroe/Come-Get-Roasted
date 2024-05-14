@@ -6,7 +6,7 @@ html {
 
 table {
   padding: 25px;
-  width: 75%;
+  min-width: 55%;
   margin-left: auto;
   margin-right: auto;
   font-size: x-large;
@@ -30,4 +30,10 @@ tr:nth-child(odd) {
 #navbuttons {
   text-align: center;
   margin-top: 20px;
+}
+
+@media (max-width: 800px) {
+  table {
+    width: 90%;
+  }
 }

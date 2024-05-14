@@ -6,17 +6,22 @@ package com.jccc.objects;
 public class Customer {
   private int id;
   private String username;
+  private String firstname;
+  private String lastname;
   private String password;
   private int points;
   private boolean isAdmin;
-  
+
   /**
    * Constructor for the customer object.
    */
-  public Customer(int id, String username, String password, int points, boolean isAdmin) {
+  public Customer(int id, String username, String firstname, String lastname, String password, int points,
+      boolean isAdmin) {
     super();
     this.id = id;
     this.username = username;
+    this.firstname = firstname;
+    this.lastname = lastname;
     this.password = password;
     this.points = points;
     this.isAdmin = isAdmin;
@@ -36,6 +41,22 @@ public class Customer {
 
   public void setUsername(String username) {
     this.username = username;
+  }
+
+  public String getFirstname() {
+    return firstname;
+  }
+
+  public void setFirstname(String firstname) {
+    this.firstname = firstname;
+  }
+
+  public String getLastname() {
+    return lastname;
+  }
+
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
   }
 
   public String getPassword() {

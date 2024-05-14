@@ -1,37 +1,35 @@
 @media (min-width: 801px) {
-  html {
-    font-family: "Courier New", Courier, monospace;
-    background-color: #fff5e1;
-    overflow-x: hidden;
-  
-    text-align: center;
-  }
-  
   .inputForm {
     color: #483634;
     background-color: #fadeb7;
     border: 2px solid #483634;
     border-radius: 15px;
-  
-    width: 50%;
+
+    width: 30%;
     font-size: large;
     margin: 20px 100px 0px 100px;
     padding: 20px;
-  
+
     display: inline-block;
     text-align: left;
   }
-  
+
   .inputForm div {
     margin-top: 20px;
   }
-  
-  .input-control.error input {
-    border-color: red;
+
+  .inputForm div input {
+    padding: 5px 10px;
+    font-size: large;
   }
-  
+
+  .input-control.error input {
+    border-color: brown;
+  }
+
   .input-control .error {
-    color: red;
+    color: brown;
+    font-weight: bold;
   }
 }
 
@@ -40,25 +38,25 @@
     font-family: "Courier New", Courier, monospace;
     background-color: #fff5e1;
     overflow-x: hidden;
-  
+
     text-align: center;
   }
-  
+
   .inputForm {
     color: #483634;
     background-color: #fadeb7;
     border: 2px solid #483634;
     border-radius: 15px;
-  
+
     width: 70%;
     font-size: large;
     padding: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
-  
+
     display: inline-block;
   }
-  
+
   .inputForm div {
     margin-top: 20px;
   }
@@ -67,15 +65,15 @@
     width: 100%;
   }
 
-  .inputForm div input[type=submit] {
+  .inputForm div input[type="submit"] {
     padding: 20px;
     font-size: large;
   }
-  
+
   .input-control.error input {
     border-color: red;
   }
-  
+
   .input-control .error {
     color: red;
   }

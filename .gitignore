@@ -1,0 +1,4 @@
+#Ignore Database files
+db.sqlite
+flyway-demo.db
+data/

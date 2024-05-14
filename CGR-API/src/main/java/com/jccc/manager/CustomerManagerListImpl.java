@@ -24,22 +24,26 @@ public class CustomerManagerListImpl implements CustomerManager {
 
   public static Customer loggedInCustomer;
 
-  public static int id = 1;
+  public int id = customerList.size();
 
   @Override
   public Customer createCustomer(Customer customer) {
+    customerList = readAllCustomers();
+    id = customerList.size() + 1;
     if (customer.getId() != 0) {
       System.out.println("Error: Customer id must initially be set to 0");
       return null;
     }
     customer.setId(id);
-    id++;
+    //id++;
     customerList.add(customer);
     try {
       Connection con = connectToDatebase();
       CustomerApi customerApi = new CustomerApi();
       customerApi.addCustomer(con, customer);
       con.close();
+      System.out.println("New customer id: " + customer.getId());
+      return loginCustomer(customer.getUsername(), customer.getPassword());
     } catch (Exception e) {
       System.out.println(e);
     }
@@ -74,9 +78,9 @@ public class CustomerManagerListImpl implements CustomerManager {
       Statement statement = con.createStatement();
       ResultSet rs = statement.executeQuery("SELECT * from customers");
       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-      while (rs.next()) { 
-        Customer customer = new Customer(rs.getInt(1), rs.getString(2), 
-            rs.getString(3), rs.getInt(5), rs.getBoolean(6));
+      while (rs.next()) {
+        Customer customer = new Customer(rs.getInt(1), rs.getString(2),
+            rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(7), rs.getBoolean(8));
         customers.add(customer);
       }
       rs.close();
@@ -88,12 +92,43 @@ public class CustomerManagerListImpl implements CustomerManager {
 
   }
 
+  public ArrayList<Customer> readAllCustomersNotDeleted() {
+    ArrayList<Customer> customers = new ArrayList<>();
+    try {
+      Connection con = connectToDatebase();
+      Statement statement = con.createStatement();
+      ResultSet rs = statement.executeQuery("SELECT * from customers WHERE username != 'DELETED'");
+      SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+      while (rs.next()) {
+        Customer customer = new Customer(rs.getInt(1), rs.getString(2),
+            rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(7), rs.getBoolean(8));
+        customers.add(customer);
+      }
+      rs.close();
+      return customers;
+    } catch (Exception e) {
+      System.out.println("Error in CustomerManager: " + e.getMessage());
+      return null;
+    }
+  }
+
   @Override
   public boolean deleteCustomer(int id) {
     for (Customer customer : customerList) {
       if (customer.getId() == id) {
-        customerList.remove(customer);
-        return true;
+        try {
+          CustomerApi api = new CustomerApi();
+          Connection con = connectToDatebase();
+          boolean success = api.deleteCustomer(con, id);
+          if (success) {
+            customerList.remove(customer);
+            return true;
+          } else {
+            return false;
+          }
+        } catch (Exception e) {
+          System.out.println("Error deleting customer: "+ e);
+        }
       }
     }
     return false;
@@ -103,8 +138,14 @@ public class CustomerManagerListImpl implements CustomerManager {
   public Customer loginCustomer(String username, String password) {
     for (Customer customer : customerList) {
       if (customer.getUsername().equals(username) && customer.getPassword().equals(password)) {
-        loggedInCustomer = customer;
-        return customer;
+        if (customer.getUsername().equals("DELETED") || customer.getPassword().equals("DELETED")) {
+          return null;
+        } else {
+          loggedInCustomer = customer;
+          loggedInCustomer.setId(customer.getId());
+          return loggedInCustomer;
+        }
+        
       }
     }
     return null;
@@ -117,10 +158,10 @@ public class CustomerManagerListImpl implements CustomerManager {
         Connection con = connectToDatebase();
         Statement statement = con.createStatement();
         ResultSet rs = statement.executeQuery("SELECT * from customers WHERE customer_id = " + loggedInCustomerId);
-        while (rs.next()) { 
-          Customer customer = new Customer(rs.getInt(1), rs.getString(2), 
-              rs.getString(3), rs.getInt(5), rs.getBoolean(6));
-            loggedInCustomer = customer;
+        while (rs.next()) {
+          Customer customer = new Customer(rs.getInt(1), rs.getString(2),
+              rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(7), rs.getBoolean(8));
+          loggedInCustomer = customer;
         }
         rs.close();
         return loggedInCustomer;
@@ -140,7 +181,7 @@ public class CustomerManagerListImpl implements CustomerManager {
     }
   }
 
-    private Connection connectToDatebase() {
+  private Connection connectToDatebase() {
     try {
       File dbFile = new File("./CGR-DB/flyway-demo.db");
       String url = "jdbc:sqlite:" + dbFile.getAbsolutePath();
